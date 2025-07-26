@@ -1,42 +1,19 @@
 // Create Web Server
-
 const http = require('http');
-const port = 3000;
+
 const server = http.createServer((req, res) => {
-    // Only handle GET requests, otherwise respond with 405
-    if (req.method !== 'GET') {
-        res.statusCode = 405;
+    // Handle incoming requests
+    if (req.method === 'GET') {
+        res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
+        res.end('Hello World!!\n');
+    } else {
+        res.statusCode = 405; // Method Not Allowed
         res.end('Method Not Allowed\n');
-        return;
     }
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World!!\n');
 });
-server.listen(port, () => {     
-    console.log(`Server running at http://localhost:${port}/`);
+
+// Server listens on port 3000
+server.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
 });
-// This is a simple web server that listens on port 3000 and responds with "Hello World!!" to any request
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
