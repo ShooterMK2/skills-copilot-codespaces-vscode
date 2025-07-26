@@ -3,6 +3,13 @@
 const http = require('http');
 const port = 3000;
 const server = http.createServer((req, res) => {
+    // Only handle GET requests, otherwise respond with 405
+    if (req.method !== 'GET') {
+        res.statusCode = 405;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Method Not Allowed\n');
+        return;
+    }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello World!!\n');
